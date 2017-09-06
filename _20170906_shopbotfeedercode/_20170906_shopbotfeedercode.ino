@@ -2,7 +2,6 @@
 #include <stdarg.h>
 #include <Arduino.h>
 
-//test comment - delete
 // Mount the servos
 Servo boltservo;
 
@@ -119,10 +118,7 @@ void loop() {
         }
       digitalWrite(screwsleep, LOW);
       program_1 = false; 
-      shopbot_OP9_value = 0;
-      shopbot_OP10_value = 0;
-      shopbot_OP11_value = 0;
-      shopbot_OP12_value = 0;
+      resetOutputState();
       }
 
 //////////////////////////////
@@ -144,10 +140,7 @@ void loop() {
         delayMicroseconds(6000);
         }
       program_2 = false; 
-      shopbot_OP9_value = 0;
-      shopbot_OP10_value = 0;
-      shopbot_OP11_value = 0;
-      shopbot_OP12_value = 0;
+      resetOutputState();
     }
 
 //////////////////////////////
@@ -169,10 +162,7 @@ void loop() {
         delayMicroseconds(6000);
         }
       program_3 = false; 
-      shopbot_OP9_value = 0;
-      shopbot_OP10_value = 0;
-      shopbot_OP11_value = 0;
-      shopbot_OP12_value = 0;
+      resetOutputState();
       }
 
 //////////////////////////////
@@ -196,10 +186,7 @@ void loop() {
         delay(30);                       // waits 15ms for the servo to reach the position
         }
       program_4 = false; 
-      shopbot_OP9_value = 0;
-      shopbot_OP10_value = 0;
-      shopbot_OP11_value = 0;
-      shopbot_OP12_value = 0;
+      resetOutputState();
       }
 
 //////////////////////////////
@@ -222,7 +209,7 @@ void loop() {
     if(shopbot_OP9_value < 950 && isLastStateReading==true){
       isLastStateReading=false;}
    }
-  delay(10);
+  delay(1000);
 
 
 ///////////////////////////////////////
@@ -296,8 +283,13 @@ void loop() {
           }
       }
   }
+
+	void resetOutputState(){
+      		shopbot_OP9_value = 0;
+      		shopbot_OP10_value = 0;
+      		shopbot_OP11_value = 0;
+      		shopbot_OP12_value = 0;
 }
-
-
+}
 
 
