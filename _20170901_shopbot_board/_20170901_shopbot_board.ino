@@ -1,6 +1,8 @@
 // bugs: when you call bolt, sometimes it throws in a jaws open immediately before
 //before starting program - put gipper state into ungripped
 
+//test update github - delete later
+
 #include <Servo.h>
 #ifndef ARDPRINTF
 #define ARDPRINTF
