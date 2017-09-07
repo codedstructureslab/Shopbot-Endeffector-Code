@@ -207,7 +207,7 @@ void loop() {
        move(1, 255, 0); //motor 2, full speed, left
        delay(driving_time); //go for 1 second
        stop(); //stop     
-       stinger_servo.writeMicroseconds(stinger_disengaged); //motor 2, full speed, left
+       stinger_servo.writeMicroseconds(stinger_enterPos); //motor 2, full speed, left
        delay(1000); //go for 1 second 
        stinger_servo.write(0);  //motor 2, full speed, left
        program_3 = false;
