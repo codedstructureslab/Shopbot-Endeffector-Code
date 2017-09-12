@@ -66,7 +66,7 @@ int AIN1 = 12; //Direction
 int AIN2 = 11; //Directiono
 
 int STBY = 13;
-int driving_time = 4500;
+int driving_time = 3800; //was 4500 when working
 
 // servos pinout location
 int stinger_arduino_pin = 3;
@@ -209,7 +209,18 @@ void loop() {
        stop(); //stop     
        stinger_servo.writeMicroseconds(stinger_enterPos); //motor 2, full speed, left
        delay(1000); //go for 1 second 
-       stinger_servo.write(0);  //motor 2, full speed, left
+       stinger_servo.write(0);  //was 0 for some reason
+       
+       //added
+       jaw_servo.writeMicroseconds(jaw_open);
+       delay(500);
+       jaw_servo.writeMicroseconds(jaw_close);
+       delay(500);
+       jaw_servo.writeMicroseconds(jaw_open);
+       delay(500);
+       jaw_servo.writeMicroseconds(jaw_close);
+       delay(500);
+         
        program_3 = false;
        resetOutputState();}
 
@@ -358,9 +369,22 @@ void loop() {
         move(1, 255, 0); //motor 2, full speed, left
         delay(driving_time); //go for 1 second
         stop(); //stop     
-        stinger_servo.writeMicroseconds(stinger_disengaged); //motor 2, full speed, left
+        stinger_servo.writeMicroseconds(stinger_enterPos); //motor 2, full speed, left
         delay(1000); //go for 1 second 
-        stinger_servo.write(0);
+        stinger_servo.write(0);  //was 0 for some reason
+       
+        //added
+        jaw_servo.writeMicroseconds(jaw_open);
+        delay(500);
+        jaw_servo.writeMicroseconds(jaw_close);
+        delay(500);
+        jaw_servo.writeMicroseconds(jaw_open);
+        delay(500);
+        jaw_servo.writeMicroseconds(jaw_close);
+        delay(500);
+         
+        program_3 = false;
+        resetOutputState();
         printState();} 
   
       //program 4
