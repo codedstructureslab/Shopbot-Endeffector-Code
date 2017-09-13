@@ -53,7 +53,7 @@ bool jaw_engaged_flag = false;
 int PWMB = 9; //Speed control
 int BIN1 = 7; //Direction
 int BIN2 = 8; //Direction
-int close_time = 7750;
+int close_time = 7750; //was 7750
 int open_time = 7750;
 //int small_time = 200;
 //int close_time_half = 425;
@@ -400,7 +400,7 @@ void loop() {
       if (c == 'd'){
         Serial.println("disengage gripper command");
         move(0, 255, 0); //motor B, full speed, left
-        delay(open_time); //go for 1 second
+        delay(close_time); //go for 1 second
         stop(); 
         GripperState = false;
         printState();}
