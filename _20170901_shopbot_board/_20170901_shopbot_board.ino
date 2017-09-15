@@ -74,12 +74,15 @@ int stinger_engaged = 1850; // in microseconds
 int stinger_disengaged = 1150; // in microseconds was 1150, 1400 for bottom layer clearance
 int stinger_loadingPos = 1500;
 int stinger_enterPos = 1400; // enter-exit position
+int stinger_exitPos = 1300; // exit position
 
 int jaw_arduino_pin = 5;
-int jaw_open = 1825; 
-int jaw_close = 1215; 
-int jaw_flat = 1260;
-int jaw_45 = 1550;
+int jaw_open = 1915; //was 1825
+int jaw_close = 1300; //was 1215
+int jaw_flat = 1260; //was 1260
+int jaw_45 = 1550; //was 1550
+int jaw_exit = 1485; //was 1400
+int jaw_enter = 1645; //was 1550
 
 //bool JawState = true; //jaw open = true
 bool GripperState = false; //ungripped = false
@@ -212,14 +215,14 @@ void loop() {
        stinger_servo.write(0);  //was 0 for some reason
        
        //added
-       jaw_servo.writeMicroseconds(jaw_open);
-       delay(500);
-       jaw_servo.writeMicroseconds(jaw_close);
-       delay(500);
-       jaw_servo.writeMicroseconds(jaw_open);
-       delay(500);
-       jaw_servo.writeMicroseconds(jaw_close);
-       delay(500);
+//       jaw_servo.writeMicroseconds(jaw_open);
+//       delay(500);
+//       jaw_servo.writeMicroseconds(jaw_close);
+//       delay(500);
+//       jaw_servo.writeMicroseconds(jaw_open);
+//       delay(500);
+//       jaw_servo.writeMicroseconds(jaw_close);
+//       delay(500);
          
        program_3 = false;
        resetOutputState();}
@@ -304,8 +307,8 @@ void loop() {
     
     if (program_7 == true && jawState != 3) {
        Serial.println("Jaw Exit");
-       jaw_servo.writeMicroseconds(1400);
-       stinger_servo.writeMicroseconds(1300);
+       jaw_servo.writeMicroseconds(jaw_exit);
+       stinger_servo.writeMicroseconds(stinger_exitPos);
        program_7 = false;
        jawState = 3;
        resetOutputState();}
@@ -325,7 +328,7 @@ void loop() {
        
     if (program_8 == true && jawState != 4) {
        Serial.println("Jaw Enter");
-       jaw_servo.writeMicroseconds(1550);
+       jaw_servo.writeMicroseconds(jaw_enter);
        stinger_servo.writeMicroseconds(stinger_enterPos);
        program_8 = false;
        jawState = 4;
@@ -374,14 +377,14 @@ void loop() {
         stinger_servo.write(0);  //was 0 for some reason
        
         //added
-        jaw_servo.writeMicroseconds(jaw_open);
-        delay(500);
-        jaw_servo.writeMicroseconds(jaw_close);
-        delay(500);
-        jaw_servo.writeMicroseconds(jaw_open);
-        delay(500);
-        jaw_servo.writeMicroseconds(jaw_close);
-        delay(500);
+//        jaw_servo.writeMicroseconds(jaw_open);
+//        delay(500);
+//        jaw_servo.writeMicroseconds(jaw_close);
+//        delay(500);
+//        jaw_servo.writeMicroseconds(jaw_open);
+//        delay(500);
+//        jaw_servo.writeMicroseconds(jaw_close);
+//        delay(500);
          
         program_3 = false;
         resetOutputState();
@@ -416,16 +419,16 @@ void loop() {
       //program 7
         if (c == 'g'){
           Serial.println("Jaw Exit Command");
-          jaw_servo.writeMicroseconds(1400);
-          stinger_servo.writeMicroseconds(1300);
+          jaw_servo.writeMicroseconds(jaw_exit); //was 1400
+          stinger_servo.writeMicroseconds(stinger_exitPos);
           jawState = 3;
           printState();}
 
       //program 7b
         if (c == 'h'){
           Serial.println("Jaw Enter Command");
-          jaw_servo.writeMicroseconds(1650); //was 1550, but changed due to interference
-          stinger_servo.writeMicroseconds(1400);
+          jaw_servo.writeMicroseconds(jaw_enter); //was 1550, but changed due to interference
+          stinger_servo.writeMicroseconds(stinger_enterPos);
           jawState = 4;
           printState();}
 
