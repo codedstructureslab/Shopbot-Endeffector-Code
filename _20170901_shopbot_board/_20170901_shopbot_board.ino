@@ -53,7 +53,7 @@ bool jaw_engaged_flag = false;
 int PWMB = 9; //Speed control
 int BIN1 = 7; //Direction
 int BIN2 = 8; //Direction
-int close_time = 7750; //was 7750
+int close_time = 8250; //was 7750
 int open_time = 7750;
 //int small_time = 200;
 //int close_time_half = 425;
@@ -73,16 +73,16 @@ int stinger_arduino_pin = 3;
 int stinger_engaged = 1850; // in microseconds
 int stinger_disengaged = 1150; // in microseconds was 1150, 1400 for bottom layer clearance
 int stinger_loadingPos = 1500;
-int stinger_enterPos = 1400; // enter-exit position
+int stinger_enterPos = 1350; // enter-exit position
 int stinger_exitPos = 1300; // exit position
 
 int jaw_arduino_pin = 5;
-int jaw_open = 1915; //was 1825
-int jaw_close = 1300; //was 1215
-int jaw_flat = 1260; //was 1260
+int jaw_open = 1775; //was 1825
+int jaw_close = 1165; //was 1215
+int jaw_flat = 1165; //was 1260
 int jaw_45 = 1550; //was 1550
-int jaw_exit = 1485; //was 1400
-int jaw_enter = 1645; //was 1550
+int jaw_exit = 1350; //was 1400
+int jaw_enter = 1550; //was 1550
 
 //bool JawState = true; //jaw open = true
 bool GripperState = false; //ungripped = false
@@ -264,7 +264,7 @@ void loop() {
     if (program_5 == true && GripperState == true) {
         Serial.println("Disengage gripper");
         move(0, 255, 0); //motor B, full speed, left
-        delay(open_time); //go for 1 second
+        delay(close_time); //go for 1 second
         stop();
         program_5 = false;
         GripperState = false;
