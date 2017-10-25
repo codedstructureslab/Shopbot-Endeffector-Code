@@ -74,15 +74,15 @@ int stinger_engaged = 1850; // in microseconds
 int stinger_disengaged = 1150; // in microseconds was 1150, 1400 for bottom layer clearance
 int stinger_loadingPos = 1500;
 int stinger_enterPos = 1350; // enter-exit position
-int stinger_exitPos = 1300; // exit position
+int stinger_exitPos = 1300; // 
 
 int jaw_arduino_pin = 5;
-int jaw_open = 1775; //was 1825
-int jaw_close = 1165; //was 1215
-int jaw_flat = 1165; //was 1260
+int jaw_open = 1550; //was 1775 - wokring 3x3x3 build
+int jaw_close = 800; //was 1165 was 1235 on 10/24/17
+int jaw_flat = 1235; //was 
 int jaw_45 = 1550; //was 1550
 int jaw_exit = 1350; //was 1400
-int jaw_enter = 1550; //was 1550
+int jaw_enter = 1350; //was 1550
 
 //bool JawState = true; //jaw open = true
 bool GripperState = false; //ungripped = false
@@ -360,7 +360,7 @@ void loop() {
       if (c == 'c'){
         Serial.println("Close Jaw command");
         jaw_servo.writeMicroseconds(jaw_close);
-        stinger_servo.writeMicroseconds(stinger_disengaged);
+        stinger_servo.writeMicroseconds(stinger_enterPos); // was stinger_disengaged
         jawState = 1;
         printState();}
   
